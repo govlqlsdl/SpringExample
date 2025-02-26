@@ -12,12 +12,16 @@ java {
 		languageVersion = JavaLanguageVersion.of(17)
 	}
 }
+tasks.withType(JavaCompile) {
+	options.compilerArgs += ['-parameters']
+}
 
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
 }
+
 
 repositories {
 	mavenCentral()
@@ -36,7 +40,9 @@ dependencies {
 	runtimeOnly 'com.mysql:mysql-connector-j'
 
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
+	
 }
+
 
 tasks.named('test') {
 	useJUnitPlatform()
